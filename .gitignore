@@ -69,6 +69,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+gradebook.db
 
 # pyenv
 .python-version
