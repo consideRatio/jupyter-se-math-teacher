@@ -24,9 +24,10 @@ class Sim:
         self.dfx, self.dfy = self.dfx_solution, self.dfy_solution
         self.gradient_descent_step = self.gradient_descent_step_solution
 
-
+    # Solutions
     def dfx_solution(self, x, y):
         return (self.f(x+self._h,y) - self.f(x-self._h,y)) / (2*self._h)
+
 
     def dfy_solution(self, x, y):
         return (self.f(x,y+self._h) - self.f(x,y-self._h)) / (2*self._h)
@@ -40,6 +41,7 @@ class Sim:
         return new_x, new_y, step_size
 
     
+    # Setters
     def set_f(self, f):
         """Set the function to gradient descent on."""
         self.f = f
@@ -57,7 +59,7 @@ class Sim:
 
     
     def set_starting_points(self, *starting_points):
-        self.starting_points = starting_points
+        self.starting_points = np.array(starting_points)
 
 
     def run(self):
