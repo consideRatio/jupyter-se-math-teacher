@@ -50,8 +50,9 @@ class Vis:
         contour = go.Contour(x=x, y=y, z=zz, showscale=False, colorscale=COLORS, ncontours=NCONTOURS)
 
         # ...quivers
-        dzx, dzy = np.gradient(zz, axis=(1,0))
-        fig_quiver = ff.create_quiver(xxx, yyy, dzx, dzy, scale=0.25, arrow_scale=.4, line=dict(width=1), showlegend=False)
+        # TODO: Utilize the gradient provided by the user.
+        df_dx, df_dy = np.gradient(zz, axis=(1,0))
+        fig_quiver = ff.create_quiver(xxx, yyy, df_dx, df_dy, scale=0.25, arrow_scale=.4, line=dict(width=1), showlegend=False)
 
         # Contours/Quivers figure
         fig_quiver['data'].extend((contour, *gd_steps_2d))
