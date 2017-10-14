@@ -1,8 +1,39 @@
 import numpy as np
+
+from bqplot import pyplot as plt
+import ipyvolume.pylab as p3
+
 from plotly import tools
 import plotly.offline as py
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
+
+
+"""
+
+TODO: Let user enter plot coordinates some fancy way
+    IDEA: gdplot drag scatter over contour map?
+
+TODO: 
+
+TODO: 
+
+TODO: show plots in different tabs?
+
+import ipywidgets as widgets
+
+tab_contents = ['P0', 'P1']
+children = [widgets.Text(description=name) for name in tab_contents]
+tab = widgets.Tab()
+tab.children = children
+for i in range(len(children)):
+    tab.set_title(i, str(i))
+tab
+
+
+"""
+
+
 
 # Jupyter Notebook responsive sizes - Small: 618, Medium: 790, Large: 990
 SMALL, MEDIUM, LARGE = (602, 790, 990)
@@ -29,7 +60,7 @@ class Vis:
             )
         )
     
-    def run(self, f, gds):
+    def run(self, f, df_dx, df_dy, gds):
         """Runs a gradient descent visualization."""
         # 1D arrays
         x, y = (np.linspace(X_0, X_1, NX), np.linspace(Y_0, Y_1, NY))
@@ -38,7 +69,27 @@ class Vis:
         zz = f(xx, yy)
         # 2D arrays - dense
         xxx, yyy = np.meshgrid(x,y)
+
+
+        """ bqplot CODE
+        """
+
+        """ ipyvolume CODE     
         
+        from matplotlib import cm
+        colormap = cm.bwr
+        znorm = (zz - zz.min()) / zz.ptp()
+        color = colormap(znorm)
+
+        
+
+        p3.figure()
+        p3.style.use([])
+        p3.plot_surface(xxx, yyy, zz, color=color[...,0:3])
+        p3.show()   
+        """
+
+
         # ...gd markers
         gd_steps_2d = []
         gd_steps_3d = []
@@ -50,9 +101,7 @@ class Vis:
         contour = go.Contour(x=x, y=y, z=zz, showscale=False, colorscale=COLORS, ncontours=NCONTOURS)
 
         # ...quivers
-        # TODO: Utilize the gradient provided by the user.
-        df_dx, df_dy = np.gradient(zz, axis=(1,0))
-        fig_quiver = ff.create_quiver(xxx, yyy, df_dx, df_dy, scale=0.25, arrow_scale=.4, line=dict(width=1), showlegend=False)
+        fig_quiver = ff.create_quiver(xxx, yyy, df_dx(xx, yy), df_dy(xx, yy), scale=0.1, arrow_scale=.4, line=dict(width=1), showlegend=False)
 
         # Contours/Quivers figure
         fig_quiver['data'].extend((contour, *gd_steps_2d))
@@ -66,8 +115,9 @@ class Vis:
         fig_3d = go.Figure(data=[surf, *gd_steps_3d], layout=self.layout)
         fig_3d['layout']['title'] = "A 2D to 1D-function in 3D"
 
-
-
         # Render
         py.iplot(fig_3d, show_link=False)
         py.iplot(fig_quiver, show_link=False)
+        """ PLOTLY CODE
+
+        """

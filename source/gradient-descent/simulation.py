@@ -90,4 +90,4 @@ class Sim:
 
             gds.append(np.column_stack((x_steps, y_steps, z_steps)))
 
-        self.vis.run(self.f, gds)
+        self.vis.run(self.f, self.df_dx, self.df_dy, gds)
