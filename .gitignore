@@ -1,3 +1,11 @@
+##### Local scripts
+
+# Script to be run at notebooks.azure.com's terminal
+# - removes source folder and flatten the release folder.
+azure-cleanup.sh
+
+#####
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
