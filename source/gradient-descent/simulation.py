@@ -36,6 +36,7 @@ class Sim:
     def test_failed(self, e):
         #print("FAIL - Your code failed the tests!")
         display(HTML(fail_base64))
+        print("Reason: " + e.args[0])
 
     
     # Simulation setup
@@ -65,8 +66,8 @@ class Sim:
             4.6625163358499513e-09, 1.8222564213395964, -0.92753851759706796, 1.3567830224835431, 0.44203310716930955
         ]]
         mismatch_messages = [
-            'df_dx(x,y) did not yield the correct values',
-            'df_dy(x,y) did not yield the correct values',
+            'df_dx(x,y) did not yield the correct values.',
+            'df_dy(x,y) did not yield the correct values.',
         ]
         self.test(actual_data, correct_data, mismatch_messages)
 
@@ -87,11 +88,11 @@ class Sim:
             [1.3069526165403576e-09, 0.38867107408468843, 0.28887840850428093, 0.28680118644021058, 0.12411247843916039],
         ]
         mismatch_messages = [
-            'new_x was not always set to the correct value',
-            'new_y was not always set to the correct value',
-            'step_size was not always set to the correct value',
+            'new_x was not always set to the correct value.',
+            'new_y was not always set to the correct value.',
+            'step_size was not always set to the correct value.',
         ]
-        self.test(actual_data, correct_data)
+        self.test(actual_data, correct_data, mismatch_messages)
 
 
     def run(self, show_2d=True, show_3d=True):

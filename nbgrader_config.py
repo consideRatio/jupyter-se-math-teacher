@@ -6,10 +6,10 @@ c = get_config()
 
 # You only need this if you are running nbgrader on a shared
 # server set up.
-c.Exchange.course_id = "jupyter-math-2"
+c.Exchange.course_id = "jupyter-math"
 
 # Update this list with other assignments you want
-c.CourseDirectory.db_assignments = [dict(name="ps1")]
+c.CourseDirectory.db_assignments = [dict(name="gradient-descent")]
 
 # Change the students in this list with that actual students in
 # your course
@@ -20,6 +20,7 @@ c.CourseDirectory.db_students = [
 ]
 
 c.IncludeHeaderFooter.header = "source/header.ipynb"
+#c.IncludeHeaderFooter.footer = "source/footer.ipynb"
 
 ###############################################################################
 # End additions by nbgrader quickstart
@@ -432,7 +433,7 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 #c.ClearSolutions.begin_solution_delimeter = 'BEGIN SOLUTION'
 
 ## The code snippet that will replace code solutions
-#c.ClearSolutions.code_stub = {'python': '# YOUR CODE HERE\nraise NotImplementedError()'}
+c.ClearSolutions.code_stub = {'python': '# YOUR CODE HERE\nraise NotImplementedError()'}
 
 ## The delimiter marking the end of a solution
 #c.ClearSolutions.end_solution_delimeter = 'END SOLUTION'
@@ -444,7 +445,7 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 #c.ClearSolutions.enforce_metadata = True
 
 ## The text snippet that will replace written solutions
-#c.ClearSolutions.text_stub = 'YOUR ANSWER HERE'
+c.ClearSolutions.text_stub = '### Answer\n\nYOUR ANSWER HERE'
 
 #------------------------------------------------------------------------------
 # SaveAutoGrades(NbGraderPreprocessor) configuration
