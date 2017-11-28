@@ -1,0 +1,15 @@
+# This file declares what conda and pip packages are required on the server in order to run properly
+# MyBinder.org and other services will by convention install these automatically
+channels:
+- damianavila82
+- conda-forge
+- defaults
+dependencies:
+- numpy
+- sympy
+- ipywidgets
+- ipyvolume
+- rise
+- nbgrader
+- pip:
+  - plotly
