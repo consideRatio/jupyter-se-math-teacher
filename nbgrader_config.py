@@ -19,7 +19,7 @@ c.CourseDirectory.db_students = [
     dict(id="reasoner", first_name="Louis", last_name="Reasoner")
 ]
 
-c.IncludeHeaderFooter.header = "source/header.ipynb"
+#c.IncludeHeaderFooter.header = "source/header.ipynb"
 #c.IncludeHeaderFooter.footer = "source/footer.ipynb"
 
 ###############################################################################
@@ -433,7 +433,7 @@ c.IncludeHeaderFooter.header = "source/header.ipynb"
 #c.ClearSolutions.begin_solution_delimeter = 'BEGIN SOLUTION'
 
 ## The code snippet that will replace code solutions
-c.ClearSolutions.code_stub = {'python': '# YOUR CODE HERE\nraise NotImplementedError()'}
+c.ClearSolutions.code_stub = {'python': '# YOUR CODE HERE\nraise NotImplementedError() # remove me'}
 
 ## The delimiter marking the end of a solution
 #c.ClearSolutions.end_solution_delimeter = 'END SOLUTION'
@@ -445,7 +445,7 @@ c.ClearSolutions.code_stub = {'python': '# YOUR CODE HERE\nraise NotImplementedE
 #c.ClearSolutions.enforce_metadata = True
 
 ## The text snippet that will replace written solutions
-c.ClearSolutions.text_stub = '### Answer\n\nYOUR ANSWER HERE'
+c.ClearSolutions.text_stub = '### Svar\n\nHär skriver du ditt svar.'
 
 #------------------------------------------------------------------------------
 # SaveAutoGrades(NbGraderPreprocessor) configuration
