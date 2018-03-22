@@ -7,9 +7,9 @@ channels:
 dependencies:
 - numpy
 - sympy
+- matplotlib
 - ipywidgets
 - ipyvolume
 - rise
-- nbgrader
 - pip:
   - plotly
