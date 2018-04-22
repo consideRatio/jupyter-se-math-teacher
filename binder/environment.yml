@@ -5,11 +5,19 @@ channels:
 - conda-forge
 - defaults
 dependencies:
+- jupyterlab
 - numpy
 - sympy
 - matplotlib
 - ipywidgets
 - ipyvolume
-- rise
 - pip:
   - plotly
+  - traitlets
+  - ipython
+  - pandas
+  - vdom
+  - jupyterlab_launcher
+  - jupyterlab_latex
+  - jupyterlab_widgets
+  
