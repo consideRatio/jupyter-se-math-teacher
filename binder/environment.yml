@@ -5,7 +5,7 @@ channels:
 - conda-forge
 - defaults
 dependencies:
-- jupyterlab
+- jupyterlab=0.32.1
 - numpy
 - sympy
 - matplotlib
@@ -20,4 +20,3 @@ dependencies:
   - jupyterlab_launcher
   - jupyterlab_latex
   - jupyterlab_widgets
-  
