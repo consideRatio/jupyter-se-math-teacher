@@ -10,4 +10,4 @@ dependencies:
 - matplotlib
 - ipywidgets
 - pip:
-  - plotly
+  - "plotly<3"
