@@ -32,6 +32,8 @@ class Vis:
     
     def run(self, f, df_dx=None, df_dy=None, gd_trails=[], show_2d=True, show_3d=True):
         """Runs a gradient descent visualization."""
+        # Step 1: Generate the data to visualize
+        
         # 1D arrays
         x, y = (np.linspace(X_0, X_1, NX), np.linspace(Y_0, Y_1, NY))
         # 2D arrays - sparse
@@ -46,34 +48,45 @@ class Vis:
             gd_trails_2d.append(go.Scatter(x=gd_trail[:,0], y=gd_trail[:,1], mode='markers+lines', line=dict(color='black'), showlegend=False))
             gd_trails_3d.append(go.Scatter3d(x=gd_trail[:,0], y=gd_trail[:,1], z=gd_trail[:,2]+0.05, mode='markers+lines', line=dict(color='black'), showlegend=False, marker=dict(size=3)))
 
+            
+        # Step 2.1: Visualize the data in 2D
         if (show_2d):
             # ...contours
             contour = go.Contour(x=x, y=y, z=zz, showscale=False, colorscale=COLORS, ncontours=NCONTOURS)
 
             # ...contours with quivers
             if (df_dx and df_dy):
-                fig_quiver = ff.create_quiver(xxx, yyy, df_dx(xx, yy), df_dy(xx, yy), scale=0.1, arrow_scale=.4, line=dict(width=1), showlegend=False)
+                quiver = ff.create_quiver(xxx, yyy, df_dx(xx, yy), df_dy(xx, yy),
+                                          scale=0.1,
+                                          arrow_scale=.4,
+                                          line=dict(
+                                              width=1,
+                                              color="black"
+                                          ),
+                                          showlegend=False
+                                         )
 
-                fig_quiver['data'].extend((contour, *gd_trails_2d))
-                fig_quiver['layout'] = self.layout
-                fig_quiver['layout']['title'] = "A 2D to 1D-function's contour plot with gradient vectors"
+                fig = go.Figure(data=[contour, quiver['data'][0]], layout=self.layout)
+                # (contour, *gd_trails_2d)
+                fig['layout'] = self.layout
+                fig['layout']['title'] = "A 2D to 1D-function's contour plot with gradient vectors"
 
-                py.iplot(fig_quiver, show_link=False)
+                py.iplot(fig, show_link=False)
             
             # ...contours without quivers
             else:
-                fig_contour = go.Figure(data=[contour], layout=self.layout) 
-                fig_contour['layout']['title'] = "A 2D to 1D-function's contour plot"
+                fig = go.Figure(data=[contour], layout=self.layout) 
+                fig['layout']['title'] = "A 2D to 1D-function's contour plot"
 
-                py.iplot(fig_contour, show_link=False)
+                py.iplot(fig, show_link=False)
 
+        # Step 2.2: Visualize the data in 3D
         if (show_3d):
             # ... 3d surface
             surf = go.Surface(x=x, y=y, z=zz, showscale=False, colorscale=COLORS)
 
             # 3D figure
-            fig_3d = go.Figure(data=[surf, *gd_trails_3d], layout=self.layout)
-            fig_3d['layout']['title'] = "A 2D to 1D-function surface plot"
+            fig = go.Figure(data=[surf, *gd_trails_3d], layout=self.layout)
+            fig['layout']['title'] = "A 2D to 1D-function surface plot"
 
-            # Render
-            py.iplot(fig_3d, show_link=False)
+            py.iplot(fig, show_link=False)
