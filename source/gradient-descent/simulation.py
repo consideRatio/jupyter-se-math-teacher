@@ -1,3 +1,4 @@
+import textwrap
 
 import numpy as np
 from math import isclose
@@ -29,16 +30,24 @@ class Sim:
 
     
     def test_passed(self):
-        md = """|Result|Reason|
-        |:-|:-|
-        |{}|{}|""".format(pass_base64, 'All tests passed.')
+        md = """
+            |Result|Reason|
+            |:-|:-|
+            |{}|{}|
+        """.format(pass_base64, 'All tests passed.')
+        md = textwrap.dedent(md).strip()
+        
         display(Markdown(md))
 
 
     def test_failed(self, reason):
-        md = """|Result|Reason|
-        |:-|:-|
-        |{}|{}|""".format(fail_base64, reason)
+        md = """
+            |Result|Reason|
+            |:-|:-|
+            |{}|{}|
+        """.format(fail_base64, reason)
+        md = textwrap.dedent(md).strip()
+        
         display(Markdown(md))
 
     

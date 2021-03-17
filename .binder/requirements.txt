@@ -1,0 +1,6 @@
+# Needed dependencies automatically installed by mybinder.org
+ipywidgets
+matplotlib
+numpy
+plotly
+sympy
